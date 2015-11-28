@@ -7,7 +7,10 @@ var Test = require("./Test.js").Test;
 var StudentSchema = new mongoose.Schema({
    username: String,
    studentNumber: String,
-    availableTests:[Test.schema]
+    availableTests:{
+        type: [mongoose.Schema.ObjectID],
+        ref: 'Test'
+    }
 });
 
 

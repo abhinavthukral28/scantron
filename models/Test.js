@@ -3,18 +3,21 @@
  */
 var mongoose = require("mongoose");
 
-var Question = new mongoose.Schema({
+var QuestionSchema = new mongoose.Schema({
     question: String,
     responses: [String],
     responseIndex:Number
 });
 
+mongoose.model("Question",QuestionSchema);
 
 var Test = new mongoose.Schema({
-   questions:[Question],
+   questions:{type:[mongoose.Schema.ObjectID],
+              ref: "Question"
+   },
     title: String,
     id: {
-        type :mongoose.Schema.Types.ObjectId,
+        type :mongoose.Schema.ObjectId,
         index: true
     }
 });
@@ -38,5 +41,5 @@ Test.methods.addQuestion = function (question)
 
 module.exports = {
     Test:{model:mongoose.model("Test",Test),schema:Test},
-    Question:{model:mongoose.model("Question",Question),schema:Question}
+    Question:{model:mongoose.model('Question'),schema:QuestionSchema}
 };
