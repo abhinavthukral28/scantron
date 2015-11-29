@@ -2,13 +2,16 @@
 extends layout
 
 block content
-    form.form-signin(action="/login", method="post")
-        h2.form-signin-heading Please sign in
-        input.input-block-level(type="text", name="username", placeholder="Email address")
-        input.input-block-level(type="password", name="password", placeholder="Password")
-        label.checkbox.
-            <input type="checkbox" value="remember-me" /> Remember me
-        button.btn.btn-large.btn-primary(type="submit") Sign in
+    .container.bodycenter
+        h4.form-signin-heading Please Sign In
+        form.form-signin(action="/login", method="post")
+            .input-field
+                input(id="email" type="text", name="username")
+                label(for="email") Email
+            .input-field
+                input(id="password" type="password", name="password")
+                label(for="password") Password
+            button.waves-effect.waves-light.btn(type="submit") Sign in
 
 
 
