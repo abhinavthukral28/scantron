@@ -1,11 +1,20 @@
 doctype html
 html
-  head
-    title Online Quiz System
-    link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.css')
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js")
-    script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js")
-   // script(type="text/javascript" src="/javascripts/client.js")
-  body
-    block content
+    head
+        title Online Quiz System
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.css')
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js")
+        script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js")
+    // script(type="text/javascript" src="/javascripts/client.js")
+    body
+        .navbar-fixed
+            nav.blue.darken-2(role="navigation")
+                .nav-wrapper.container
+                    a.brand-logo(href="#") Online Quiz System
+                    ul#nav-mobile.right.hide-on-med-and-down
+                        li
+                            a(href="#") logout
+
+        block content

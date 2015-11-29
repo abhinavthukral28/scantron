@@ -1,0 +1,44 @@
+//Created by abhinav on 2015-11-28.
+extends layout
+block content
+    .container
+        form
+            .row
+                .col.s12.m8.l8.push-l2
+                    .row.center.bodycenter
+                        h2 Test Title
+                        p Test Instructions/Details
+                    .card-panel
+                        .row
+                            .col.s10.m10.l10
+                                h5 1. This is a question
+                                p
+                                    input(id="q1r1", type="radio", name="q1", value="1")
+                                    label(for="q1r1") This is option A
+                                p
+                                    input(id="q1r2", type="radio", name="q1", value="2")
+                                    label(for="q1r2") This is option B
+                                p
+                                    input(id="q1r3", type="radio", name="q1", value="3")
+                                    label(for="q1r3") This is option C
+                                p
+                                    input(id="q1r4", type="radio", name="q1", value="4")
+                                    label(for="q1r4") This is option D
+                    .card-panel
+                        .row
+                            .col.s10.m10.l10
+                                h5 2. This is a question
+                                p
+                                    input(id="q2r1", type="radio", name="q2", value="1")
+                                    label(for="q2r1") This is option A
+                                p
+                                    input(id="q2r2", type="radio", name="q2", value="2")
+                                    label(for="q2r2") This is option B
+                                p
+                                    input(id="q2r3", type="radio", name="q2", value="3")
+                                    label(for="q2r3") This is option C
+                                p
+                                    input(id="q2r4", type="radio", name="q2", value="4")
+                                    label(for="q2r4") This is option D
+                    .row.center
+                        button.waves-effect.waves-light.btn.blue.darken-2(type="submit") Submit

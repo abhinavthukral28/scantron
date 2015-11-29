@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var testsamples = require('./routes/testsample');
 var Student = require('./models/Student.js').model;
 var app = express();
 require("mongoose").connect('mongodb://localhost:27017');
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/login',authenticate);
 app.use('/', routes);
 app.use('/users', users);
+app.use('/testsample', testsamples);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -56,7 +58,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-function authenticate(request, response, next){
+function authenticate(request, response, next) {
 
 
     var username = request.query['username'];
@@ -64,11 +66,17 @@ function authenticate(request, response, next){
     console.log("User: ", username);
     console.log("Student number: ", studentNumber);
 
-    var authorized = false;
-  Student.get(username,studentNumber,function(err,student){
-    if (student)
-      authorized = true;
-  });
+    var authorized = true;
+    Student.get(username, studentNumber, function (err, student) {
+        if (student)
+            authorized = true;
+    });
+    if(authorized === true){
+        response.statusCode = 302;
+        response.header("Location", "/testsample");
+        response.end();
+    }
+
 
 
 
