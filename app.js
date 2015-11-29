@@ -8,7 +8,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var Student = require('./models/Student.js').model;
 var app = express();
-
+require("mongoose").connect('mongodb://localhost:27017');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
