@@ -21,7 +21,13 @@ app.set('view engine', 'jade');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 //auth stuff -----start
-app.use(session({ secret: 'tester' })); // session secret
+app.use(cookieParser());
+app.use(session({
+    genid: function(req) {
+        return genuuid() // use UUIDs for session IDs
+    },
+    secret: 'keyboard cat'
+}));
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
@@ -29,7 +35,6 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 //Routes
 //app.use('/login',authenticate);
@@ -47,10 +52,16 @@ app.use(function(req, res, next) {
   next(err);
 });
 app.post('/login', passport.authenticate('local-login', {
-    successRedirect : '/profile', // redirect to the secure profile section
-    failureRedirect : '/login', // redirect back to the signup page if there is an error
+    successRedirect : '/testsample', // redirect to the secure profile section
+    failureRedirect : '/signup', // redirect back to the signup page if there is an error
     failureFlash : true // allow flash messages
 }));
+app.post('/signup', passport.authenticate('local-signup', {
+    successRedirect : '/testsample', // redirect to the secure profile section
+    failureRedirect : '/signup', // redirect back to the signup page if there is an error
+    failureFlash : true // allow flash messages
+}));
+
 
 // error handlers
 
