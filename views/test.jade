@@ -8,14 +8,18 @@ block content
                     .row.center.bodycenter
                         h2 Midterm Test
                         p Each Question has one correct answer, you have been given an option to take 3 hints. Hint will tell you if your selected answer for a specific question is correct or not without penalization.
+                    .row
                         each val in data
                             .card-panel
                                 .row
                                     .col.s10.m10.l10
                                         h6(id='#{val._id}') #{val.question}
+                                        - var i = 0;
                                         each response in val.responses
+                                            - i++
                                             p
-                                                input(id="#", type="radio", name="q1", value="1")
-                                                label(for="q1r1") This is option A
+                                                input(id='#{val._id + "__" + i}', type="radio", name='#{val._id}', value='#{i}')
+                                                label(for='#{val._id + "__" + i}') #{response}
+                                        - i = 0;
                     .row.center
                         button.waves-effect.waves-light.btn.blue.darken-2(type="submit") Submit
