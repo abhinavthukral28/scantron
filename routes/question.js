@@ -3,8 +3,10 @@
  */
 var express = require('express');
 var router = express.Router();
-
+var url = require('url');
+//var mongoose = ("mongoose")l
 var Student = require("./../models/Student.js").model;
+
 
 /* GET home page. hopefully */
 router.get('/', function(request, res, next) {
@@ -16,20 +18,41 @@ router.get('/', function(request, res, next) {
 
 });
 
-router.get('/update',function(request,res,next){
-
+router.post('/update',function(request,res,next){
     var qid = request.body["qid"];
-    var index = request.body["responseIndex"];
-
+    var index =request.body["responseIndex"];
+    qid = qid.split("__")[0];
     Student.get(request.cookies.username,request.cookies.password,function(error,student){
         for(var i = 0; i < student.questions.length; i++)
         {
-            if (student.questions[i]._id == qid)
+
+            if (student.questions[i]._id.toHexString() === qid)
             {
-                student.questions[i].studentResponse = index;
+
+                console.log(student.questions[i].studentResponse);
+                console.log(student.questions[i].responses);
+                student.questions[i].studentResponse = parseInt(index);
+                student.markModified('questions');
+                student.save(function(err){
+                  console.log("sasved");
+                }
+                );
+                //student.questions[i].save(function(err){
+                //   console.log("question saved");
+                //    student.save(function(err){
+                //        console.log("serve");
+                //    })
+                //});
+
+              //  var question = student.questions[i];
+
+
+
+                //student.questions[i].save();
+                //student.questions[i].update();
+                //student.update();
             }
         }
-        student.save();
     });
     res.statusCode = 200;
     res.end();

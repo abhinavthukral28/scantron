@@ -8,6 +8,7 @@ $(document).ready(function()
         $.ajax({
             url: "/all/update",
             data:{qid: event.target.id,responseIndex: event.target.value},
+            type : "POST",
             statusCode: {
                 200: function (response) {
                    console.log("updated");
@@ -18,3 +19,16 @@ $(document).ready(function()
     });
 }
 );
+
+function submitTest()
+{
+    $.ajax({
+        url: "/all/submit",
+        statusCode: {
+            200: function (response) {
+                window.alert("Final score: " + response);
+            }
+        }
+
+    });
+}
