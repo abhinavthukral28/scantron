@@ -126,11 +126,11 @@ var students = [
 ];
 function dbInit(){
     if() {
-        for (var i; i < questions.length; i++) {
+        for (var i = 0; i < questions.length; i++) {
             var question = new Question(questions[i]);
             question.save();
         }
-        for (var j; j < students.length; j++) {
+        for (var j = 0; j < students.length; j++) {
             var student = new Student(students[j]);
             student.save();
         }
