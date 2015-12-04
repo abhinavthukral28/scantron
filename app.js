@@ -28,7 +28,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(authenticate);
 app.use("/all",questionRoute);
-//app.use('/', routes);
+app.use('/', routes);
 app.use('/users', users);
 app.use('/testsample', testsamples);
 
@@ -87,8 +87,10 @@ function authenticate(request, response, next) {
             if (student) {
                 //response.cookie("username",username);
                 //response.cookie("password",password);
-
+                //response.statusCode = 302;
+                //response.redirect('/all');
                 next();
+                // response.end();
             }
             else{
                 //we had an authorization header by the user:password is not valid
