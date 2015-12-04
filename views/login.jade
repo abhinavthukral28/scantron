@@ -4,7 +4,7 @@ extends layout
 block content
     .container.bodycenter
         h4.form-signin-heading Please Sign In
-        form.form-signin(action="/all", method="post")
+        form.form-signin(onsubmit="authenticate();return false;", method="post")
             .input-field
                 input(id="email" type="text", name="username")
                 label(for="email") Email

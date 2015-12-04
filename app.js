@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(authenticate);
+app.use("/login",authenticate);
 app.use("/all",questionRoute);
 app.use('/', routes);
 app.use('/users', users);
@@ -88,8 +88,9 @@ function authenticate(request, response, next) {
                 //response.cookie("username",username);
                 //response.cookie("password",password);
                 //response.statusCode = 302;
-                //response.redirect('/all');
-                next();
+
+                response.statusCode = 200;
+                response.end();
                 // response.end();
             }
             else{
