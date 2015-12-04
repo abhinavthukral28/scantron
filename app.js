@@ -86,11 +86,13 @@ function authenticate(request, response, next) {
        // var authorized = false;
         Student.get(username,password, function (err, student) {
             if (student) {
-                //response.cookie("username",username);
-                //response.cookie("password",password);
+                response.writeHead(200, [
+                    ['Set-Cookie', 'username='+username],
+                    ['Set-Cookie', 'password='+password]
+                ]);
                 //response.statusCode = 302;
 
-                response.statusCode = 200;
+             //   response.statusCode = 200;
                 response.end();
                 // response.end();
             }
