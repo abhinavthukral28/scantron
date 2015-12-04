@@ -28,6 +28,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use("/login",authenticate);
 app.use("/all",questionRoute);
+//app.use("updateQuestion");
 app.use('/', routes);
 app.use('/users', users);
 app.use('/testsample', testsamples);

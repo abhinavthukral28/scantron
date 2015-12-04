@@ -18,7 +18,8 @@ var questions = [{
         "An IP address represents a computer host on the internet.",
         "The URL http://localhost:3000/login.html refers specifically to a sever file named \"login.html\""
     ],
-    "responseIndex": 5
+    "responseIndex": 5,
+    "studentResponse":0
 }, {
     "question": "Which ONE of the following statements about the HTTP protocol is FALSE?",
     "responses": [
@@ -28,7 +29,8 @@ var questions = [{
         "HTTP is stateless (has no notion of previous messages).",
         "Only HTTP GET, not POST, can be cached by the browser."
     ],
-    "responseIndex": 3
+    "responseIndex": 3,
+    "studentResponse":0
 }, {
     "question": "Which ONE of the following is TRUE regarding the difference between a GET and POST HTTP request?",
     "responses": [
@@ -38,7 +40,8 @@ var questions = [{
         "GET HTTP requests can be inspected by routers but POST requests cannot.",
         "POST query parameters are limited in length but GET parameters are not."
     ],
-    "responseIndex": 3
+    "responseIndex": 3,
+    "studentResponse":0
 
 }, {
     "question": "JSON is a popular format for transporting data between client and server. Which ONE of the following statements about JSON is TRUE?",
@@ -49,7 +52,8 @@ var questions = [{
         "JSON can be transported with a MIME type 'text/plain'.",
         "JSON can be parsed on the server side but not in the browser."
     ],
-    "responseIndex": 4
+    "responseIndex": 4,
+    "studentResponse":0
 }, {
     "question": "Which ONE of the following is FALSE about JSON encoding?",
     "responses": [
@@ -59,7 +63,8 @@ var questions = [{
         "JSON can use string literals like \"2015/10/17\" to represent dates.",
         "JSON representations are not javascript objects. "
     ],
-    "responseIndex": 1
+    "responseIndex": 1,
+    "studentResponse":0
 
 }, {
     "question": "Which ONE of the following is officially of type object in Javascript?",
@@ -70,7 +75,8 @@ var questions = [{
         "number",
         "array"
     ],
-    "responseIndex": 5
+    "responseIndex": 5,
+    "studentResponse":0
 }, {
     "question": "Suppose x is a javascript object that does not have a property name defined. Which ONE of the following best describes what happens if you execute the expression x.name = 'Lou'; in Javascript?",
     "responses": [
@@ -80,7 +86,8 @@ var questions = [{
         "The property name is added to the global object and assigned the value 'Lou'.",
         "The member name is added to the object and assigned the value 'Lou'."
     ],
-    "responseIndex": 5
+    "responseIndex": 5,
+    "studentResponse":0
 }, {
     "question": "Which ONE of the following best explains what the f.prototype property of a function object f refers to in javascript?",
     "responses": [
@@ -90,7 +97,8 @@ var questions = [{
         "It is not defined when f is used as a constructor with new.",
         "It is undefined because .prototype only applies to non-function objects. "
     ],
-    "responseIndex": 3
+    "responseIndex": 3,
+    "studentResponse":0
 }, {
     "question": "Which ONE of the following statements about strings in javascript is FALSE?",
     "responses": [
@@ -100,7 +108,8 @@ var questions = [{
         "Strings are actually objects because they can have object properties assigned to them.",
         "Strings can be represented literally with either single or double quotes in javascript. "
     ],
-    "responseIndex": 2
+    "responseIndex": 2,
+    "studentResponse":0
 }];
 
 var students = [
