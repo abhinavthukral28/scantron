@@ -7,7 +7,8 @@ html
         link(rel='stylesheet', href='/stylesheets/style.css')
         script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js")
         script(type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js")
-       script(type="text/javascript" src="/javascripts/auth.js")
+        script(type="text/javascript" src="/javascripts/auth.js")
+        script(type="text/javascript" src="/javascripts/client.js")
     body
         .navbar-fixed
             nav.blue.darken-2(role="navigation")
@@ -15,6 +16,5 @@ html
                     a.brand-logo(href="#") Online Quiz System
                     ul#nav-mobile.right.hide-on-med-and-down
                         li
-                            a(href="#") logout
 
         block content
