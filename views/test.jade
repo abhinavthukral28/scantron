@@ -18,7 +18,10 @@ block content
                                         each response in val.responses
                                             - i++
                                             p
-                                                input(id='#{val._id + "__" + i}', type="radio", name='#{val._id}', value='#{i}')
+                                                if val.studentResponse == i
+                                                    input(id='#{val._id + "__" + i}', type="radio", name='#{val._id}', value='#{i}',checked)
+                                                else
+                                                    input(id='#{val._id + "__" + i}', type="radio", name='#{val._id}', value='#{i}')
                                                 label(for='#{val._id + "__" + i}') #{response}
                                         - i = 0;
                     .row.center
