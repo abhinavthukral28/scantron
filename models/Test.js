@@ -8,6 +8,7 @@ var QuestionSchema = new mongoose.Schema({
     question: String,
     responses: [String],
     responseIndex: Number,
+    studentResponse: Number,
     id: {
         type: mongoose.Schema.ObjectId,
         index: true
