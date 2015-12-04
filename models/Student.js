@@ -2,14 +2,14 @@
  * Created by allan on 2015-11-28.
  */
 var mongoose = require("mongoose");
-var Test = require("./Test.js").Test;
+var Question = require("./Test.js").Question.model;
 
 var StudentSchema = new mongoose.Schema({
    username: String,
    studentNumber: String,
-    availableTests:{
+    questions:{
         type: [mongoose.Schema.ObjectID],
-        ref: 'Test'
+        ref: 'Question'
     }
 });
 
@@ -19,12 +19,12 @@ StudentSchema.statics.get = function(username,studentNumber,callback)
     return this.findOne({"username":username, "studentNumber":studentNumber},callback);
 };
 
-StudentSchema.methods.addTest = function (test)
+StudentSchema.methods.addQuestion = function (question)
 {
     var contains = false;
-    for (var i = 0; i < this.availableTests;i++)
+    for (var i = 0; i < this.questions; i++)
     {
-         if (this.availableTests[i].id == test.id)
+         if (this.questions[i].id == question.id)
          {
              contains = true;
              break;
@@ -32,7 +32,7 @@ StudentSchema.methods.addTest = function (test)
     }
     if (!contains)
     {
-        this.availableTests.push(test);
+        this.questions.push(question);
     }
 
 };

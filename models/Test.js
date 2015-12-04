@@ -7,7 +7,11 @@ var mongoose = require("mongoose");
 var QuestionSchema = new mongoose.Schema({
     question: String,
     responses: [String],
-    responseIndex: Number
+    responseIndex: Number,
+    id: {
+        type: mongoose.Schema.ObjectId,
+        index: true
+    }
 });
 
 QuestionSchema.statics.getAll = function (callback)

@@ -132,17 +132,18 @@ var dbInit = function(){
     {
        if (student === null)
        {
-           for (var i = 0; i < questions.length; i++) {
-               var question = new Question(questions[i]);
-               question.save();
-           }
+
 
            for (var j = 0; j < students.length; j++) {
                var studentNew = new Student(students[j]);
+               for (var i = 0; i < questions.length; i++) {
+                   var question = new Question(questions[i]);
+                   studentNew.addQuestion(question);
+               }
                studentNew.save();
            }
        }
     });
 
-}
+};
 module.exports = dbInit;
