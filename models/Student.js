@@ -16,7 +16,7 @@ var StudentSchema = new mongoose.Schema({
 
 StudentSchema.statics.get = function(username,studentNumber,callback)
 {
-    return this.findOne({username:username, studentNumber:studentNumber},callback);
+    return this.findOne({"username":username, "studentNumber":studentNumber},callback);
 };
 
 StudentSchema.methods.addTest = function (test)

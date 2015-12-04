@@ -2,13 +2,18 @@
  * Created by allan on 2015-11-28.
  */
 var mongoose = require("mongoose");
-var questions = req
+ 
 
 var QuestionSchema = new mongoose.Schema({
     question: String,
     responses: [String],
     responseIndex: Number
 });
+
+QuestionSchema.statics.getAll = function (callback)
+{
+    return this.find({}, callback);
+};
 
 mongoose.model("Question", QuestionSchema);
 
