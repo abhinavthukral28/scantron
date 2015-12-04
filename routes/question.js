@@ -5,10 +5,7 @@ var express = require('express');
 var router = express.Router();
 
 var Student = require("./../models/Student.js").model;
-var newStudent;
-Student.get("123456",function(error,student){
-    newStudent = student;
-});
+
 /* GET home page. hopefully */
 router.get('/', function(request, res, next) {
 
@@ -19,7 +16,7 @@ router.get('/', function(request, res, next) {
 
 });
 
-router.get('/update',function(req,res,next){
+router.get('/update',function(request,res,next){
 
     var qid = request.body["qid"];
     var index = request.body["responseIndex"];
@@ -32,13 +29,14 @@ router.get('/update',function(req,res,next){
                 student.questions[i].studentResponse = index;
             }
         }
+        student.save();
     });
     res.statusCode = 200;
     res.end();
 
 });
 
-router.get('/update',function(req,res,next){
+router.get('/submit',function(req,res,next){
 
      var totalScore;
 
