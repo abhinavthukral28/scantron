@@ -8,8 +8,12 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var testsamples = require('./routes/testsample');
 var Student = require('./models/Student.js').model;
+var questionRoute = require('./routes/');
 var app = express();
 require("mongoose").connect('mongodb://localhost:27017');
+var init = require("./dbInit");
+init();
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -21,7 +25,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/login',authenticate);
+app.use(authenticate);
 app.use('/', routes);
 app.use('/users', users);
 app.use('/testsample', testsamples);
@@ -60,30 +64,64 @@ app.use(function(err, req, res, next) {
 
 function authenticate(request, response, next) {
 
-
-    var username = request.query['username'];
-    var studentNumber = request.query['studentNumber'];
-    console.log("User: ", username);
-    console.log("Student number: ", studentNumber);
-
-    var authorized = true;
-    Student.get(username, studentNumber, function (err, student) {
-        if (student)
-            authorized = true;
-    });
-    if(authorized === true){
-        response.statusCode = 302;
-        response.header("Location", "/testsample");
+    //
+    //var username = request.query['username'];
+    //var studentNumber = request.query['studentNumber'];
+    //console.log("User: ", username);
+    //console.log("Student number: ", studentNumber);
+  /*  Middleware to do BASIC http 401 authentication
+    */
+    var auth = request.headers.authorization;
+    // auth is a base64 representation of (username:password)
+    //so we will need to decode the base64
+    if(!auth){
+        //note here the setHeader must be before the writeHead
+        response.setHeader('WWW-Authenticate', 'Basic realm="need to login"');
+        response.status(403);
+        response.render("login");
         response.end();
     }
+    else{
+        console.log("Authorization Header: " + auth);
+        //decode authorization header
+        // Split on a space, the original auth
+        //looks like  "Basic Y2hhcmxlczoxMjM0NQ==" and we need the 2nd part
+        var tmp = auth.split(' ');
+
+        // create a buffer and tell it the data coming in is base64
+        var buf = new Buffer(tmp[1], 'base64');
+
+        // read it back out as a string
+        //should look like 'ldnel:secret'
+        var plain_auth = buf.toString();
+        console.log("Decoded Authorization ", plain_auth);
+
+        //extract the userid and password as separate strings
+        var credentials = plain_auth.split(':');      // split on a ':'
+        var username = credentials[0];
+        var password = credentials[1];
+        console.log("User: ", username);
+        console.log("Password: ", password);
+
+       // var authorized = false;
+        Student.get(username,password, function (err, student) {
+            if (student) {
+                response.statusCode = 302;
+                response.header("Location", "/testsample");
+               // response.end();
+            }
+            else{
+                //we had an authorization header by the user:password is not valid
+          //      response.writeHead(401, {'Content-Type': 'text/html'});
+                response.render('login');
+                console.log('No authorization found, send 401.');
+                response.end();
+            }
+
+        });
 
 
-
-
-
-
-
-
+    }
 }
 
 

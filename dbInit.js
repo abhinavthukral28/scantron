@@ -6,6 +6,7 @@ var mongoose = require("mongoose");
 var TestSchemas = require("./models/Test.js");
 var Test = TestSchemas.Test.model;
 var Question = TestSchemas.Question.model;
+var Student = require("./models/Student.js").model;
 
 
 var questions = [{
@@ -105,35 +106,43 @@ var questions = [{
 var students = [
     {
         "username": "studentA",
-        "password": "123456"
+        "studentNumber": "123456"
     },
     {
         "username": "studentB",
-        "password": "123456"
+        "studentNumber": "123456"
     },
     {
         "username": "studentC",
-        "password": "123456"
+        "studentNumber": "123456"
     },
     {
         "username": "studentD",
-        "password": "123456"
+        "studentNumber": "123456"
     },
     {
         "username": "studentE",
-        "password": "123456"
+        "studentNumber": "123456"
     }
 ];
-function dbInit(){
-    if() {
-        for (var i = 0; i < questions.length; i++) {
-            var question = new Question(questions[i]);
-            question.save();
-        }
-        for (var j = 0; j < students.length; j++) {
-            var student = new Student(students[j]);
-            student.save();
-        }
-    }
+var dbInit = function(){
+
+
+    Student.get("studentA","123456",function(err,student)
+    {
+       if (student === null)
+       {
+           for (var i = 0; i < questions.length; i++) {
+               var question = new Question(questions[i]);
+               question.save();
+           }
+
+           for (var j = 0; j < students.length; j++) {
+               var studentNew = new Student(students[j]);
+               studentNew.save();
+           }
+       }
+    });
+
 }
-module.exports = dbInit();
+module.exports = dbInit;
