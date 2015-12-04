@@ -3,7 +3,7 @@
  */
 function authenticate()
 {
-    var username = $("input#username").val();
+    var username = $("input#email").val();
     var password = $("input#password").val();
     $.ajax({
         url: "/login",
