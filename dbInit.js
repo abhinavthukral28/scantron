@@ -2,6 +2,12 @@
  *
  * Created by abhinav on 2015-12-03.
  */
+var mongoose = require("mongoose");
+var TestSchemas = require("./models/Test.js");
+var Test = TestSchemas.Test.model;
+var Question = TestSchemas.Question.model;
+
+
 var questions = [{
     "question": "Which ONE of the following is FALSE about URL’s, IP addresses and Ports?",
     "responses": [
@@ -118,3 +124,16 @@ var students = [
         "password": "123456"
     }
 ];
+function dbInit(){
+    if() {
+        for (var i; i < questions.length; i++) {
+            var question = new Question(questions[i]);
+            question.save();
+        }
+        for (var j; j < students.length; j++) {
+            var student = new Student(students[j]);
+            student.save();
+        }
+    }
+}
+module.exports = dbInit();

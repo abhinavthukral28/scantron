@@ -2,6 +2,7 @@
  * Created by allan on 2015-11-28.
  */
 var mongoose = require("mongoose");
+var questions = req
 
 var QuestionSchema = new mongoose.Schema({
     question: String,
