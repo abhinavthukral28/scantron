@@ -3,16 +3,11 @@
  */
 var express = require('express');
 var router = express.Router();
-
-var Student = require("./../models/Student.js").model;
-var newStudent;
-Student.get("studentA","123456",function(error,student){
-    newStudent = student;
-});
-/* GET home page. hopefully */
-router.get('/', function(req, res, next) {
-    console.log("student" + newStudent);
-    res.render("test",{student: newStudent});
+var Question = require("./../models/Test.js").Question.model;
+/* GET home page. */
+router.get('/all', function(req, res, next) {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(Question.getAll()));
 });
 
 module.exports = router;
