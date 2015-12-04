@@ -11,8 +11,9 @@ Student.get("studentA","123456",function(error,student){
 });
 /* GET home page. hopefully */
 router.get('/', function(req, res, next) {
-    console.log("student" + newStudent);
-    res.render("test",{student: newStudent});
+    var data = {questions: newStudent.questions}
+    console.log(newStudent);
+    res.render("test",{data:newStudent.questions});
 });
 
 module.exports = router;
